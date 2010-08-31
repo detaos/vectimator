@@ -5,14 +5,54 @@
 <head>
 	<title>Vectimator | SVG Animation Studio</title>
 	<style type="text/css">
+	html {
+		height: 100%;
+	}
 	body {
+		height: 100%;
 		margin: 0;
 		padding: 0;
+	}
+	#main_table {
+		border-collapse: collapse;
+		height: 100%;
+		margin: 0;
+		padding: 0;
+		width: 100%;
+	}
+	#main_table td {
+		border: 1px solid #f00;
+		margin: 0;
+		vertical-align: top;
+	}
+	#tree_view {
+		height: 100%;
+		width: 150px;
+	}
+	#the_svg {
+		height: 100%;
+		overflow: hidden;
+	}
+	#keyed_properties {
+		height: 100%;
+		width: 150px;
 	}
 	</style>
 </head>
 <body>
-<p>//TODO insert awesome SVG Animation Studio</p>
+<table id="main_table">
+<tr>
+	<td colspan="3" id="menu"><a href="#">open</a> | <a href="#">save</a> | <a href="#">save as</a> | <a href="#">render</a></td>
+</tr>
+<tr>
+	<td id="tree_view">SVG Tree View<hr /></td>
+	<td id="the_svg">[open an svg to see it]</td>
+	<td id="keyed_properties">Keyed Properties<hr /></td>
+</tr>
+</tr>
+	<td colspan="3" id="timeline">[timeline]</td>
+</tr>
+</table>
 </body>
 </html>
 
