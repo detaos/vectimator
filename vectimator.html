@@ -4,45 +4,24 @@
 
 <head>
 	<title>Vectimator | SVG Animation Studio</title>
-	<style type="text/css">
-	html {
-		height: 100%;
-	}
-	body {
-		height: 100%;
-		margin: 0;
-		padding: 0;
-	}
-	#main_table {
-		border-collapse: collapse;
-		height: 100%;
-		margin: 0;
-		padding: 0;
-		width: 100%;
-	}
-	#main_table td {
-		border: 1px solid #f00;
-		margin: 0;
-		vertical-align: top;
-	}
-	#tree_view {
-		height: 100%;
-		width: 150px;
-	}
-	#the_svg {
-		height: 100%;
-		overflow: hidden;
-	}
-	#keyed_properties {
-		height: 100%;
-		width: 150px;
-	}
-	</style>
+	<link rel="stylesheet" type="text/css" href="vectimator.css" />
+	<script type="text/javascript" src="vectimator.js"></script>
 </head>
 <body>
 <table id="main_table">
 <tr>
-	<td colspan="3" id="menu"><a href="#">open</a> | <a href="#">save</a> | <a href="#">save as</a> | <a href="#">render</a></td>
+	<td colspan="3" id="main_menu">
+		<script type="text/javascript">
+		<!--
+		var main_menu = {
+			'file_menu' : { 'title' : "File", 'items' : [ ["Open", "open()"], ['Save', 'save()'], ['Save As', 'save_as()'] ] },
+			'view_menu' : { 'title' : "View", 'items' : [ ['Normal', 'set_view(\'normal\')'], ['Outline', 'set_view(\'outline\')'] ] },	//TODO: replace function parameter examples with actual values
+			'help_menu' : { 'title' : "Help", 'items' : [ ['Documentation', 'show_docs()'], ['About', 'show_about()'] ] }
+		};
+		vectimator.init_menu(main_menu);
+		-->
+		</script>
+	</td>
 </tr>
 <tr>
 	<td id="tree_view">SVG Tree View<hr /></td>
