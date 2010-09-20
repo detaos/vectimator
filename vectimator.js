@@ -37,7 +37,7 @@ var vectimator = {
 	},
 	
 	open : function() {
-		alert("TODO: open an SVG");
+		get("the_svg").data = "test_svgs/0x01.svg";
 		this.close_menu();
 	},
 	
