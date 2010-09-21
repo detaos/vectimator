@@ -10,6 +10,9 @@ h2 {
 	text-align: center;
 	border-bottom: 1px solid #999;
 }
+a {
+	text-decoration: none;
+}
 #main_menu {
 	background-color: #c00;
 	color: #fff;
@@ -20,7 +23,6 @@ h2 {
 	display: inline-block;
 	font-weight: bold;
 	padding: 0.25em 1em;
-	text-decoration: none;
 }
 .menu_item:hover {
 	background-color: #300;
@@ -37,7 +39,6 @@ h2 {
 	color: #fff;
 	display: inline-block;
 	padding: 0.25em 1em;
-	text-decoration: none;
 }
 #main_table {
 	border-collapse: collapse;
@@ -81,4 +82,7 @@ h2 {
 	margin: 100px auto;
 	padding: 2em;
 	width: 400px;
+}
+.node_child {
+	display: none;
 }

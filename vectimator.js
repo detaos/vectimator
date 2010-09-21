@@ -6,12 +6,17 @@ function echo(s) {
 	document.write(s);
 }
 
+function show_hide(id) {
+	get(id).style.display = get(id).style.display == "block" ? "none" : "block";
+}
+
 function show_popup(id) {
 	get('popup_layer').innerHTML = get(id).innerHTML;
 	get('popup_layer').style.display = "block";
 }
 
 function close_popup() {
+	get('popup_layer').innerHTML = "";
 	get('popup_layer').style.display = "none";
 }
 
@@ -46,16 +51,29 @@ var vectimator = {
 	},
 	
 	menu_open : function() {
-		//FOR TESTING
-		get("the_svg").data = "test_svgs/0x01.svg";
-		//LIVE CODE
-		//show_popup('open_svg_popup');
+		show_popup('open_svg_popup');
 		this.close_menu();
 	},
 	
-	open : function(svg) {
-		get("the_svg").data = get(svg).files[0].getAsDataURL();
-		//TODO populate the tree view
+	build_children : function(svg) {
+		//TODO
+	},
+	
+	//TODO figure out why you have to click the open button twice to get the code after the "populate the tree view" comment to execute
+	open : function(file) {
+		get("the_svg").data = get(file).files[0].getAsDataURL();
+		//populate the tree view
+		var html = "";
+		var svg = get("the_svg").contentDocument.activeElement.childNodes;
+		for (var i = 0; i < svg.length; ++i) {
+			if (svg[i].nodeName != "#text") {
+				var node_id = 'node_' + svg[i].nodeName + '_' + svg[i].id;
+				var display_name = svg[i].nodeName + (svg[i].id != null ? "#" + svg[i].id : "");
+				html += '<a href="javascript:show_hide(\'' + node_id + '\')">+</a> ' + display_name + '<br /><div class="node_child" id="' + node_id + '">children here</div>';
+			}
+		}
+		get("tree_view").innerHTML = html;
+		close_popup();
 	},
 	
 	save : function() {
@@ -79,7 +97,7 @@ var vectimator = {
 	},
 	
 	show_about : function() {
-		alert("TODO: show the documentation (in a new tab)");
+		alert("TODO: show the about (in a new tab)");
 		this.close_menu();
 	}
 };
