@@ -59,10 +59,7 @@ var vectimator = {
 		//TODO
 	},
 	
-	//TODO figure out why you have to click the open button twice to get the code after the "populate the tree view" comment to execute
-	open : function(file) {
-		get("the_svg").data = get(file).files[0].getAsDataURL();
-		//populate the tree view
+	build_tree_view : function() {
 		var html = "";
 		var svg = get("the_svg").contentDocument.activeElement.childNodes;
 		for (var i = 0; i < svg.length; ++i) {
@@ -73,6 +70,12 @@ var vectimator = {
 			}
 		}
 		get("tree_view").innerHTML = html;
+	},
+	
+	open : function(file) {
+		get("the_svg").data = get(file).files[0].getAsDataURL();
+		//populate the tree view
+		setTimeout("vectimator.build_tree_view()", 10);	//This is needed because the svg can't be parsed in the same function that opened it
 		close_popup();
 	},
 	
