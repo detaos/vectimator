@@ -6,6 +6,10 @@ body {
 	margin: 0;
 	padding: 0;
 }
+h2 {
+	text-align: center;
+	border-bottom: 1px solid #999;
+}
 #main_menu {
 	background-color: #c00;
 	color: #fff;
@@ -46,7 +50,7 @@ body {
 	margin: 0;
 	vertical-align: top;
 }
-#tree_view {
+#tree_view_td {
 	height: 100%;
 	width: 150px;
 }
@@ -63,4 +67,18 @@ body {
 }
 #timeline {
 	border-top: 3px double #000;
+}
+#popup_layer {
+	display: none;
+	background-image: url('img/trans_black.png');
+	height: 100%;
+	position: absolute;
+	width: 100%;
+}
+.popup {
+	border: 6px double #600;
+	background-color: #fff;
+	margin: 100px auto;
+	padding: 2em;
+	width: 400px;
 }

@@ -6,6 +6,15 @@ function echo(s) {
 	document.write(s);
 }
 
+function show_popup(id) {
+	get('popup_layer').innerHTML = get(id).innerHTML;
+	get('popup_layer').style.display = "block";
+}
+
+function close_popup() {
+	get('popup_layer').style.display = "none";
+}
+
 var vectimator = {
 	menu : null,
 	
@@ -18,7 +27,7 @@ var vectimator = {
 		for (key in this.menu) {
 			echo('<div class="sub_menu" id="' + key + "\">\n");
 			for (item in this.menu[key]['items']) {
-				echo('<a class="sub_menu_item" href="javascript:vectimator.' + this.menu[key]['items'][item][1] + '">' + this.menu[key]['items'][item][0] + "</a>&nbsp;|&nbsp;\n");
+				echo('<a class="sub_menu_item" id="' + key + '_' + this.menu[key]['items'][item][0] + '_link" href="javascript:vectimator.' + this.menu[key]['items'][item][1] + '">' + this.menu[key]['items'][item][0] + "</a>&nbsp;|&nbsp;\n");
 			}
 			echo ("</div>\n");
 		}
@@ -36,9 +45,17 @@ var vectimator = {
 			get(key).style.display = "none";
 	},
 	
-	open : function() {
+	menu_open : function() {
+		//FOR TESTING
 		get("the_svg").data = "test_svgs/0x01.svg";
+		//LIVE CODE
+		//show_popup('open_svg_popup');
 		this.close_menu();
+	},
+	
+	open : function(svg) {
+		get("the_svg").data = get(svg).files[0].getAsDataURL();
+		//TODO populate the tree view
 	},
 	
 	save : function() {

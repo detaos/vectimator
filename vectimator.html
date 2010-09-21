@@ -4,19 +4,21 @@
 
 <head>
 	<title>Vectimator | SVG Animation Studio</title>
+	<link rel="stylesheet" type="text/css" href="jquery.css" />
 	<link rel="stylesheet" type="text/css" href="vectimator.css" />
 	<script type="text/javascript" src="vectimator.js"></script>
 </head>
 <body>
+<div id="popup_layer"></div>
 <table id="main_table">
 <tr>
 	<td colspan="3" id="main_menu">
 		<script type="text/javascript">
 		<!--
 		var main_menu = {
-			'file_menu' : { 'title' : "File", 'items' : [ ["Open", "open()"], ['Save', 'save()'], ['Save As', 'save_as()'] ] },
-			'view_menu' : { 'title' : "View", 'items' : [ ['Normal', 'set_view(\'normal\')'], ['Outline', 'set_view(\'outline\')'] ] },	//TODO: replace function parameter examples with actual values
-			'help_menu' : { 'title' : "Help", 'items' : [ ['Documentation', 'show_docs()'], ['About', 'show_about()'] ] }
+			'file_menu' : { 'title' : "File", 'items' : [ ['Open', "menu_open()"], ['Save', "save()"], ['Save As', "save_as()"] ] },
+			'view_menu' : { 'title' : "View", 'items' : [ ['Normal', "set_view('normal')"], ['Outline', "set_view('outline')"] ] },	//TODO: replace function parameter examples with actual values
+			'help_menu' : { 'title' : "Help", 'items' : [ ['Documentation', "show_docs()"], ['About', "show_about()"] ] }
 		};
 		vectimator.init_menu(main_menu);
 		-->
@@ -24,13 +26,40 @@
 	</td>
 </tr>
 <tr>
-	<td id="tree_view">SVG Tree View<hr /></td>
-	<td id="svg_td"><object id="the_svg" width="100%" height="100%" data="" type="image/svg+xml" /></td>
+	<td id="tree_view_td">
+		SVG Tree View
+		<hr />
+		<div id="tree_view"></div>
+	</td>
+	<td id="svg_td">
+		<object id="the_svg" width="100%" height="100%" data="" type="image/svg+xml" />
+	</td>
 	<td id="keyed_properties">Keyed Properties<hr /></td>
 </tr>
 </tr>
 	<td colspan="3" id="timeline">[timeline]</td>
 </tr>
 </table>
+
+<!-- Pop Ups -->
+<div style="display:none">
+
+<div id="open_svg_popup">
+	<div class="popup">
+	<h2>Open SVG File</h2>
+	<br /><br />
+	<div style="text-align:center">
+		<form action="#">
+			<input type="file" id="input_open_svg" />
+			<br /><br /><br />
+			<input type="button" value="Cancel" onclick="javascript:close_popup()" />
+			&nbsp;&nbsp;|&nbsp;&nbsp;
+			<input type="button" value="Open" onclick="javascript:vectimator.open('input_open_svg'); close_popup();" />
+		</form>
+	</div>
+	<br />
+	</div>
+</div>
+
 </body>
 </html>
