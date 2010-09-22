@@ -30,9 +30,13 @@
 		SVG Tree View
 		<hr />
 		<div id="tree_view"></div>
+		<div id="attribute_selector">
+			<h3 id="element_id">&nbsp;</h3>
+			<div id="element_attributes"></div>
+		</div>
 	</td>
 	<td id="svg_td">
-		<object id="the_svg" width="100%" height="100%" data="" type="image/svg+xml" />
+		<object id="the_svg" type="image/svg+xml" onload="javasctipt:vectimator.build_tree_view()" />
 	</td>
 	<td id="keyed_properties">Keyed Properties<hr /></td>
 </tr>

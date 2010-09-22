@@ -16,12 +16,16 @@ function show_popup(id) {
 }
 
 function close_popup() {
-	get('popup_layer').innerHTML = "";
 	get('popup_layer').style.display = "none";
+	get('popup_layer').innerHTML = "";
 }
 
 var vectimator = {
 	menu : null,
+	
+	get : function(id) {
+		return get("the_svg").contentDocument.getElementById(id);
+	},
 	
 	init_menu : function(m) {
 		this.menu = m;
@@ -55,28 +59,49 @@ var vectimator = {
 		this.close_menu();
 	},
 	
-	build_children : function(svg) {
-		//TODO
+	open : function(file) {
+		get("the_svg").data = get(file).files[0].getAsDataURL();
 	},
 	
 	build_tree_view : function() {
 		var html = "";
+		svg_elements = new Array();
 		var svg = get("the_svg").contentDocument.activeElement.childNodes;
-		for (var i = 0; i < svg.length; ++i) {
-			if (svg[i].nodeName != "#text") {
-				var node_id = 'node_' + svg[i].nodeName + '_' + svg[i].id;
-				var display_name = svg[i].nodeName + (svg[i].id != null ? "#" + svg[i].id : "");
-				html += '<a href="javascript:show_hide(\'' + node_id + '\')">+</a> ' + display_name + '<br /><div class="node_child" id="' + node_id + '">children here</div>';
-			}
-		}
+		html += this.build_children(svg);
 		get("tree_view").innerHTML = html;
+		close_popup();
 	},
 	
-	open : function(file) {
-		get("the_svg").data = get(file).files[0].getAsDataURL();
-		//populate the tree view
-		setTimeout("vectimator.build_tree_view()", 10);	//This is needed because the svg can't be parsed in the same function that opened it
-		close_popup();
+	build_children : function(svg) {
+		var html = "";
+		for (var i = 0; i < svg.length; ++i) {
+			if (svg[i].nodeName != "#text" && svg[i].id != null) {
+				var node_id = 'node_' + svg[i].nodeName + '_' + svg[i].id;
+				var node_name = svg[i].nodeName + "#" + svg[i].id;
+				var display_name = '<a href="javascript:vectimator.view_attributes(\'' + node_name + '\', \'' + svg[i].id + '\')">' + node_name + '</a>'
+				if (svg[i].childNodes.length > 0) {
+					html += '<a class="node_expander" href="javascript:show_hide(\'children_' + node_id + '\')" id="' + node_id + '">+</a>' + display_name;
+					html += '<br /><div class="node_child" id="children_' + node_id + '">';
+					html += this.build_children(svg[i].childNodes);
+					html += '</div>';
+				}
+				else {
+					html += display_name + '<br />';
+				}
+			}
+		}
+		return html;
+	},
+	
+	view_attributes : function(name, id) {
+		get("element_id").innerHTML = name;
+		var svg = this.get(id).attributes;
+		var html = "";
+		for (var i = 0; i < svg.length; ++i) {
+			html += '<div class="attribute">' + svg[i].nodeName + '<br />';
+			html += '<input type="text" value="' + svg[i].nodeValue + '" /></div>';
+		}
+		get("element_attributes").innerHTML = html;
 	},
 	
 	save : function() {

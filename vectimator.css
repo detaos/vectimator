@@ -6,7 +6,7 @@ body {
 	margin: 0;
 	padding: 0;
 }
-h2 {
+h2, h3 {
 	text-align: center;
 	border-bottom: 1px solid #999;
 }
@@ -69,6 +69,14 @@ a {
 #timeline {
 	border-top: 3px double #000;
 }
+#the_svg {
+	height: 100%;
+	width: 100%;
+}
+#attribute_selector {
+	border-top: 3px double #000;
+	margin-top: 1em;
+}
 #popup_layer {
 	display: none;
 	background-image: url('img/trans_black.png');
@@ -84,5 +92,20 @@ a {
 	width: 400px;
 }
 .node_child {
+	border: 1px solid #999;
 	display: none;
+	margin: 1px;
+	padding: 2px;
+}
+.node_expander {
+	color: #c00;
+	font-weight: bold;
+}
+.attribute {
+	border-bottom: 1px solid #999;
+	margin-bottom: 6px;
+	padding-bottom: 2px;
+}
+.attribute input {
+	margin-top: 2px;
 }
