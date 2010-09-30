@@ -98,9 +98,8 @@ var vectimator = {
 		var svg = this.get(id).attributes;
 		var html = "";
 		for (var i = 0; i < svg.length; ++i) {
-			html += '<div class="attribute">' + svg[i].nodeName + '<br />';
-			var text_id = "text_" + id + svg[i].nodeName;
-			html += '<input id="' + text_id + '" type="text" value="' + svg[i].nodeValue + '" onkeyup="vectimator.set_attribute(\'' + id + '\', \'' + i + '\', this.value)" /></div>';
+			html += '<div class="attribute"><a href="javascript:vectimator.show_new_animation_popup(\'' + name + '\', \'' + id + '\', \'' + svg[i].nodeName + '\', \'' + svg[i].nodeValue + '\')">[+]</a> ' + svg[i].nodeName + '<br />';
+			html += '<input type="text" value="' + svg[i].nodeValue + '" onkeyup="vectimator.set_attribute(\'' + id + '\', \'' + i + '\', this.value)" /></div>';
 		}
 		get("element_attributes").innerHTML = html;
 	},
@@ -110,6 +109,35 @@ var vectimator = {
 	 */
 	set_attribute : function(id, index, value) {
 		this.get(id).attributes[index].nodeValue = value;
+	},
+	
+	show_new_animation_popup : function(name, id, attribute, value) {
+		show_popup("animation_popup");
+		get("animation_popup_name").innerHTML = name;
+		get("animation_popup_id").value = id;
+		get("animation_popup_attribute").value = attribute;
+		get("animation_popup_from").value = value;
+		get("animation_popup_to").value = value;
+		get("animation_popup_duration").value = "5s";
+	},
+	
+	add_animation_tag : function() {
+		var svg = this.get(get("animation_popup_id").value);
+		var animate_tag = svg.createElement("animate");		//TODO: FIXME!
+		svg.apendChild(animate_tag);
+		svg = svg.getElementsByTagName("animate")[0];
+		svg.createAttribute("attributeType");
+		svg.attributeType = "XML";
+		svg.createAttribute("attributeName");
+		svg.attributeName = get("animation_popup_attribute").value;
+		svg.createAttribute("from");
+		svg.from = get("animation_popup_from").value;
+		svg.createAttribute("to");
+		svg.to = get("animation_popup_to").value;
+		svg.createAttribute("duration");
+		svg.duration = get("animation_popup_duration").value;
+		svg.createAttribute("repeatCount");
+		svg.repeatCount = "indefinite";
 	},
 	
 	save : function() {

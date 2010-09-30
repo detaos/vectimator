@@ -65,5 +65,37 @@
 	</div>
 </div>
 
+<div id="animation_popup">
+	<div class="popup">
+	<h2>Animate SVG Attribute</h2>
+	<div style="width:60%; margin:0 auto"><h3 id="animation_popup_name"></h3></div>
+	<input type="hidden" id="animation_popup_id" />
+	<br />
+	<form action="#">
+		<table style="margin:0 auto">
+		<tr>
+			<td style="text-align:right">attribute: &nbsp; </td><td><input type="text" id="animation_popup_attribute" readonly="readonly" /></td>
+		</tr>
+		<tr>
+			<td style="text-align:right">from: &nbsp; </td><td><input type="text" id="animation_popup_from" /></td>
+		</tr>
+		<tr>
+			<td style="text-align:right">to: &nbsp; </td><td><input type="text" id="animation_popup_to" /></td>
+		</tr>
+		<tr>
+			<td style="text-align:right">duration: &nbsp; </td><td><input type="text" id="animation_popup_duration" /></td>
+		</tr>
+		</table>
+		<br /><br />
+		<div style="text-align:center">
+			<input type="button" value="Cancel" onclick="javascript:close_popup()" />
+			&nbsp;&nbsp;|&nbsp;&nbsp;
+			<input type="button" value="Set" onclick="vectimator.add_animation_tag()" />
+		</div>
+	</form>
+	<br />
+	</div>
+</div>
+
 </body>
 </html>
