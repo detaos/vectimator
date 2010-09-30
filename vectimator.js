@@ -99,9 +99,14 @@ var vectimator = {
 		var html = "";
 		for (var i = 0; i < svg.length; ++i) {
 			html += '<div class="attribute">' + svg[i].nodeName + '<br />';
-			html += '<input type="text" value="' + svg[i].nodeValue + '" /></div>';
+			var text_id = "text_" + id + svg[i].nodeName;
+			html += '<input id="' + text_id + '" type="text" value="' + svg[i].nodeValue + '" onkeyup="vectimator.set_attribute(\'' + id + '\', \'' + i + '\', this.value)" /></div>';
 		}
 		get("element_attributes").innerHTML = html;
+	},
+	
+	set_attribute : function(id, index, value) {
+		this.get(id).attributes[index].nodeValue = value;
 	},
 	
 	save : function() {
