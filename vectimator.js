@@ -69,6 +69,8 @@ var vectimator = {
 		var svg = get("the_svg").contentDocument.activeElement.childNodes;
 		html += this.build_children(svg);
 		get("tree_view").innerHTML = html;
+		get("element_id").innerHTML = "";
+		get("element_attributes").innerHTML = "";
 		close_popup();
 	},
 	
