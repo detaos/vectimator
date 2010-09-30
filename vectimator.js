@@ -105,6 +105,9 @@ var vectimator = {
 		get("element_attributes").innerHTML = html;
 	},
 	
+	/**
+	 * set an attribute in the svg's xml tree
+	 */
 	set_attribute : function(id, index, value) {
 		this.get(id).attributes[index].nodeValue = value;
 	},
